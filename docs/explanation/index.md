@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    "description lang=en":
+      "authd explanation guides covering architecture, security, and documentation."
+---
+
 (explanation)=
 
 # Explanation

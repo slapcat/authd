@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    "description lang=en": "Management of groups using authd with Microsoft Entra ID."
+---
+
 (reference::group-management)=
 # Group management
 

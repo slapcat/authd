@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    "description lang=en":
+      "Design decisions, security practices, and configurations affecting authd security."
+---
+
 # Security overview for authd
 
 authd lets Ubuntu systems verify user identities through trusted cloud identity

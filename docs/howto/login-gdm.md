@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    "description lang=en": "Use authd for cloud-based login to Ubuntu with GDM."
+---
+
 # Log in with GDM
 
 ## Logging in with a remote provider

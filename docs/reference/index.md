@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    "description lang=en":
+      "authd reference pages covering supported providers, troubleshooting, groups management, and deployment."
+---
+
 (reference)=
 
 # Reference

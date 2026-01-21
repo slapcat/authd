@@ -1,3 +1,9 @@
+---
+myst:
+  html_meta:
+    "description lang=en": "Cloud providers supported by authd."
+---
+
 # Cloud providers that authd supports
 
 authd supports cloud providers through its identity brokers.

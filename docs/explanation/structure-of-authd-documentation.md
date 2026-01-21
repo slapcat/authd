@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    "description lang=en":
+      "The authd documentation uses the Diátaxis structure."
+---
+
 # Structure of authd documentation
 
 The authd documentation uses the [Diátaxis structure](https://diataxis.fr/).
