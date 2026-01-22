@@ -42,6 +42,12 @@ full transition to the cloud.
 * <a href="howto/install-authd/?broker=msentraid">Install authd and the Microsoft Entra ID broker</a>
 * <a href="howto/configure-authd/?broker=msentraid">Configure the Microsoft Entra ID broker</a>
 :::
+:::{tab-item} Keycloak
+:sync: keycloak
+
+* <a href="howto/install-authd/?broker=keycloak">Install authd and the generic OIDC broker</a>
+* <a href="howto/configure-authd/?broker=keycloak">Configure the generic OIDC broker for Keycloak</a>
+:::
 
 :::::
 
