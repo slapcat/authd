@@ -27,6 +27,8 @@ const (
 	clientIDKey = "client_id"
 	// clientSecret is the optional client secret for this client.
 	clientSecret = "client_secret"
+	// extraScopesKey is the key in the config file for extra OIDC scopes.
+	extraScopesKey = "extra_scopes"
 
 	// entraIDSection is the section name in the config file for Microsoft Entra ID specific configuration.
 	entraIDSection = "msentraid"
@@ -90,6 +92,7 @@ type userConfig struct {
 	allowedSSHSuffixes    []string
 	extraGroups           []string
 	ownerExtraGroups      []string
+	extraScopes           []string
 
 	provider provider
 }
@@ -223,6 +226,7 @@ func parseConfig(cfgContent []byte, dropInContent []any, p provider) (userConfig
 		cfg.issuerURL = oidc.Key(issuerKey).String()
 		cfg.clientID = oidc.Key(clientIDKey).String()
 		cfg.clientSecret = oidc.Key(clientSecret).String()
+		cfg.extraScopes = oidc.Key(extraScopesKey).Strings(",")
 
 		if oidc.HasKey(forceProviderAuthenticationKey) {
 			cfg.forceProviderAuthentication, err = oidc.Key(forceProviderAuthenticationKey).Bool()

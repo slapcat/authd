@@ -194,6 +194,8 @@ func (b *Broker) NewSession(username, lang, mode string) (sessionID, encryptionK
 	if b.provider.SupportsDeviceRegistration() && b.cfg.registerDevice {
 		scopes = consts.MicrosoftBrokerAppScopes
 	}
+	// Append extra scopes from config
+	scopes = append(scopes, b.cfg.extraScopes...)
 
 	if s.oidcServer != nil {
 		s.oauth2Config = oauth2.Config{
