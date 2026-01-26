@@ -96,7 +96,7 @@ Select the {guilabel}`TVs and Limited Input devices` application type.
 
 Name your OAuth 2.0 client and click {guilabel}`Create`.
 
-Your app's `Client ID` and `Client Secret` will be shown on the page, store them somewhere as you will need them in the next step.
+Your app's `Client ID` and `Client secret` will be shown on the page, store them somewhere as you will need them in the next step.
 
 ![Screen showing app credentials.](../assets/google-app-credentials.png)
 
