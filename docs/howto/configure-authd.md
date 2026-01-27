@@ -82,7 +82,6 @@ broker can then use to authenticate users.
 ::::{tab-item} Google IAM
 :sync: google
 
-
 To register a new application go to the [Credentials page](https://console.cloud.google.com/apis/credentials).
 
 Click {menuselection}`Create credentials --> OAuth client ID`.
