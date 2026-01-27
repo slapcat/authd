@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 LIB_DIR="${SCRIPT_DIR}/lib"
 SSH="${SCRIPT_DIR}/ssh.sh"
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/authd-e2e-tests"
 
 usage(){
     cat << EOF
@@ -62,7 +63,7 @@ assert_env_vars RELEASE VM_NAME_BASE BROKERS
 
 IFS=',' read -r -a BROKER_ARRAY <<< "${BROKERS}"
 
-ARTIFACTS_DIR="${SCRIPT_DIR}/.artifacts/${RELEASE}"
+ARTIFACTS_DIR="${DATA_DIR}/${RELEASE}"
 
 if [ -z "${VM_NAME:-}" ]; then
     VM_NAME="${VM_NAME_BASE}-${RELEASE}"
