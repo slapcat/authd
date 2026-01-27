@@ -82,7 +82,6 @@ broker can then use to authenticate users.
 ::::{tab-item} Google IAM
 :sync: google
 
-Register a new application in Google IAM. Once registered, note the {guilabel}`Client ID` and the {guilabel}`Client secret`. These values correspond to `<CLIENT_ID>` and `<CLIENT_SECRET>`, respectively, which are used in the next section.
 
 To register a new application go to the [Credentials page](https://console.cloud.google.com/apis/credentials).
 
