@@ -72,8 +72,9 @@ sudo sed -i '/pam_authd_exec\.so\|pam_authd\.so/ s/$/ debug=true/' /etc/pam.d/*
 
 ### NSS module
 
-Export `AUTHD_NSS_INFO=stderr` environment variable on any program using the
-authd NSS module to get more info on NSS requests to authd.
+To get more info on NSS requests to authd,
+export the `AUTHD_NSS_INFO=stderr` environment variable on any program using the
+authd NSS module.
 
 ### authd service
 
