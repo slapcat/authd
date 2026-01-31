@@ -80,7 +80,7 @@ updates:
       minor-updates:
         update-types: [ "minor", "patch" ]
     commit-message:
-      prefix: "deps(go)"
+      prefix: "deps(brokers/go)"
 
   - package-ecosystem: "gomod"
     directory: "/authd-oidc-brokers/tools"
@@ -90,11 +90,11 @@ updates:
       minor-updates:
         update-types: [ "minor", "patch" ]
     commit-message:
-      prefix: "deps(go-tools)"
+      prefix: "deps(brokers/go-tools)"
   ## rust-toolchain.toml
   - package-ecosystem: "cargo"
     directory: "/authd-oidc-brokers"
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "deps(rust)"
+      prefix: "deps(brokers/rust)"
