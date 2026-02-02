@@ -11,6 +11,7 @@ env:
   build_dependencies: >-
     clang-tools
     clang
+    dotnet8
     libglib2.0-dev
     libpam-dev
     libpwquality-dev
@@ -44,27 +45,50 @@ jobs:
               with:
                 tools-directory: ./tools
 
-            - name: Fetch last successful QA run id
+            - name: Fetch last successful QA runs ids
               env:
                 GITHUB_TOKEN: ${{ github.token }}
               run: |
                 set -eu
-                echo "LAST_QA_ID=$(gh run list --workflow 'authd QA & sanity checks' --limit 1 --status success --json databaseId -b main | jq '.[].databaseId')" >> $GITHUB_ENV
+                echo "LAST_AUTHD_QA_ID=$(gh run list --workflow 'authd QA & sanity checks' --limit 1 --status success --json databaseId -b main | jq '.[].databaseId')" >> $GITHUB_ENV
+                echo "LAST_BROKERS_QA_ID=$(gh run list --workflow 'Brokers QA & sanity checks' --limit 1 --status success --json databaseId -b main | jq '.[].databaseId')" >> $GITHUB_ENV
 
-            - name: Download coverage artifact
+            - name: Download coverage artifact from authd QA
               uses: actions/download-artifact@v7
               with:
                 github-token: ${{ github.token }}
-                path: .artifacts/
-                run-id: ${{ env.LAST_QA_ID }}
+                path: .artifacts/authd
+                run-id: ${{ env.LAST_AUTHD_QA_ID }}
+
+            - name: Download coverage artifact from brokers QA
+              uses: actions/download-artifact@v7
+              with:
+                github-token: ${{ github.token }}
+                path: .artifacts/brokers
+                run-id: ${{ env.LAST_BROKERS_QA_ID }}
+
+            - name: Merge coverage reports
+              run: |
+                set -eu
+
+                dotnet tool install -g dotnet-reportgenerator-globaltool
+
+                export PATH="$PATH:/home/ubuntu/.dotnet/tools"
+
+                mv .artifacts/authd/coverage/Cobertura.xml .artifacts/authd-coverage.xml
+                mv .artifacts/brokers/Cobertura.xml .artifacts/broker-coverage.xml
+
+                # TICS expects the coverage report to:
+                # - be in a directory named 'coverage' in the current working directory
+                mkdir -p coverage
+
+                # - have a single report named coverage.xml
+                reportgenerator -reports:.artifacts/*.xml -targetdir:coverage -reporttypes:Cobertura
+                mv coverage/Cobertura.xml coverage/coverage.xml
 
             - name: Build artifacts
               run: |
                 set -eu
-
-                # Move coverage to expected directory
-                mkdir coverage
-                mv .artifacts/coverage/Cobertura.xml coverage/coverage.xml
 
                 # TICS needs to build the artifacts in order to run the analysis.
                 # Since it uses the GOTOOLCHAIN=local stanza, it's better if we prebuild it to make sure that the Go
